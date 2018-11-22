@@ -3,7 +3,7 @@ pkgname=metroid-demo
 pkgver=1.1.1.r0.gf96312a
 pkgrel=1
 pkgdesc="OpenGL tech demo"
-arch=("i686" "x86_64")
+arch=("x86_64")
 url="https://github.com/stallmanifold/metroid-demo/"
 license=("APACHE" "MIT")
 groups=()
@@ -39,11 +39,11 @@ package() {
 	echo "srcdir=$srcdir"
 	echo "pkgdir=$pkgdir"
 	cd "$pkgname"
-	mkdir -p "$pkgdir/.config/"
-	mkdir -p "$pkgdir/.local/bin/"
-	mkdir -p "$pkgdir/.local/share/metroid-demo/"
-	cp -r "assets" "$pkgdir/.local/share/metroid-demo/"
-	cp -r "shaders" "$pkgdir/.local/share/metroid-demo/"
-	cp "target/release/metroid-demo" "$pkgdir/.local/bin/"
-	cp "config/metroid-demo.toml" "$pkgdir/.config/"
+	mkdir -p "$pkgdir/"
+	mkdir -p "$pkgdir/bin/"
+	mkdir -p "$pkgdir/share/metroid-demo/"
+	cp -r "assets" "$pkgdir/share/metroid-demo/"
+	cp -r "shaders" "$pkgdir/share/metroid-demo/"
+	cp "target/release/metroid-demo" "$pkgdir/bin/"
+	cp "config/metroid-demo.toml" "$pkgdir/"
 }
