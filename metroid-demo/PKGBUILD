@@ -1,6 +1,6 @@
 # Maintainer: Christopher Blanchard <stallmanifold@gmail.com>
 pkgname=metroid-demo
-pkgver=1.1.1.r0.gf96312a
+pkgver=1.1.4
 pkgrel=1
 pkgdesc="OpenGL tech demo"
 arch=("x86_64")
