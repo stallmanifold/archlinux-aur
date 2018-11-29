@@ -1,0 +1,49 @@
+# Maintainer: Christopher Blanchard <stallmanifold@gmail.com>
+pkgname=triforces-demo
+pkgver=1.1.11
+pkgrel=1
+pkgdesc="OpenGL tech demo"
+arch=("x86_64")
+url="https://github.com/stallmanifold/triforces-demo/"
+license=("APACHE" "MIT")
+groups=()
+depends=()
+makedepends=("git" "rust")
+provides=("${pkgname%}")
+conflicts=("${pkgname%}")
+replaces=()
+backup=()
+options=()
+install=
+source=("triforces-demo::git+https://github.com/stallmanifold/triforces-demo")
+noextract=()
+md5sums=("SKIP")
+
+
+pkgver() {
+	cd "$pkgname"
+	git describe --long | sed "s/\([^-]*-g\)/r\1/;s/-/./g"
+}
+
+build() {
+	cd "$pkgname"
+	cargo build --release --features build_for_install
+}
+
+check() {
+	cd "$pkgname"
+	cargo test
+}
+
+package() {
+	echo "srcdir=$srcdir"
+	echo "pkgdir=$pkgdir"
+	cd "$pkgname"
+	mkdir -p "$pkgdir/"
+	mkdir -p "$pkgdir/bin/"
+	mkdir -p "$pkgdir/share/triforces-demo/"
+	cp -r "assets" "$pkgdir/share/triforces-demo/"
+	cp -r "shaders" "$pkgdir/share/triforces-demo/"
+	cp "target/release/triforces-demo" "$pkgdir/bin/"
+	cp "config/triforces-demo.toml" "$pkgdir/"
+}
